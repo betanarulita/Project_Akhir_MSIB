@@ -97,14 +97,19 @@ def apiDeteksi():
 # =[Main]========================================		
 
 if __name__ == '__main__':
-	
-	# Load model yang telah ditraining
-	model = make_model()
-	model.load_weights("modelwayang.h5")
+    # Load model yang telah ditraining
+    model = make_model()
+    
+    # Panggil model terlebih dahulu
+    model.call(tf.keras.Input(shape=(IMG_SIZE, IMG_SIZE, 3)))
+    
+    # Muat berat (weights) model
+    model.load_weights("modelwayang.h5")
 
-	# Run Flask di localhost 
-	run_with_ngrok(app)
-	app.run()
+    # Run Flask di localhost 
+    run_with_ngrok(app)
+    app.run()
+
 	
 	
 
